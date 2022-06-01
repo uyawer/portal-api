@@ -1,16 +1,52 @@
-# Compiled class file
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+bin/
+!**/src/main/**/bin/
+!**/src/test/**/bin/
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+### VS Code ###
+.vscode/
+
+### Compiled class file ###
 *.class
 
-# Log file
+### Log file ###
 *.log
 
-# BlueJ files
+### BlueJ files ###
 *.ctxt
 
-# Mobile Tools for Java (J2ME)
+### Mobile Tools for Java (J2ME) ###
 .mtj.tmp/
 
-# Package Files #
+### Package Files ###
+.gradle
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
 *.jar
 *.war
 *.nar
@@ -21,3 +57,6 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+### Properties Files ###
+application-local.yml

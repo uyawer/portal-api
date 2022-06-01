@@ -1,0 +1,51 @@
+# ----------------------------------------
+# プロファイルの切り替え
+# ここに記述された内容は application.ymlの内容より優先
+# 後勝ち
+# ----------------------------------------
+spring.profiles.group:
+  local:
+    - local
+
+# ----------------------------------------
+# logging
+# ----------------------------------------
+logging:
+  level:
+    root: INFO
+    web: INFO
+    org.hibernate:
+      SQL: DEBUG
+      type.descriptor.sql.BasicBinder: TRACE
+
+# ----------------------------------------
+# DataSource
+# ----------------------------------------
+spring.datasource:
+  driver-class-name: org.postgresql.Driver
+  url: jdbc:postgresql://{hostname}:{port}/{schema]
+  username:
+  password:
+  initialization-mode: always
+
+# ----------------------------------------
+# JPA
+# ----------------------------------------
+spring.jpa:
+  database: POSTGRESQL
+  hibernate.ddl-auto: validate
+  open-in-view: true
+  hibernate:
+    naming:
+      physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+
+# ----------------------------------------
+# WEB
+# ----------------------------------------
+spring.web:
+  resources:
+    chain:
+      strategy:
+        content:
+          enabled: true
+          paths: /**

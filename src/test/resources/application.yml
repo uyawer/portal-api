@@ -1,0 +1,42 @@
+# ----------------------------------------
+# logging
+# ----------------------------------------
+logging:
+  level:
+    root: INFO
+    web: INFO
+    org.hibernate:
+      SQL: DEBUG
+      type.descriptor.sql.BasicBinder: TRACE
+
+# ----------------------------------------
+# DataSource
+# ----------------------------------------
+spring.datasource:
+  driver-class-name: org.postgresql.Driver
+  url: jdbc:postgresql://localhost:5432/temportal
+  username: temportaluser
+  password: temportaluser0428
+  initialization-mode: always
+
+# ----------------------------------------
+# JPA
+# ----------------------------------------
+spring.jpa:
+  database: POSTGRESQL
+  hibernate.ddl-auto: validate
+  open-in-view: true
+  hibernate:
+    naming:
+      physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+
+# ----------------------------------------
+# WEB
+# ----------------------------------------
+spring.web:
+  resources:
+    chain:
+      strategy:
+        content:
+          enabled: true
+          paths: /**

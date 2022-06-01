@@ -1,0 +1,5 @@
+# DataSource
+spring.datasource:
+  url: jdbc:postgresql://localhost:5432/temportal
+  username: temportaluser
+  password: temportaluser0428

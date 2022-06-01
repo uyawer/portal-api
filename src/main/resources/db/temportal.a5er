@@ -1,0 +1,212 @@
+﻿# A5:ER FORMAT:16
+# A5:ER ENCODING:UTF8
+# A5:ER Mk-1 Copyright © 2007 m.matsubara
+# A5:SQL Mk-2 Version 2.17.1 Copyright © 1997 - 2022 m.matsubara
+#  https://a5m2.mmatsubara.com
+
+[Manager]
+ProjectName=temportal
+Author=
+MaxEntityRowShow=1000
+ReadOnlyRecommend=1
+Page=Main
+PageInfo="Main",7,"A3Landscape",$FFFFFF
+Domain=AUTO_ID=bigserial
+DomainInfo="AUTO_ID","bigserial","自動裁判するID",""
+Domain=ID=bigint
+DomainInfo="ID","bigint","主キー以外のID",""
+Domain=DATETIME=timestamp without time zone
+DomainInfo="DATETIME","timestamp without time zone","日付時刻",""
+Domain=DATE=date
+DomainInfo="DATE","date","日付",""
+LogicalView=1
+DecodeDomain=0
+ViewModePageIndividually=1
+ViewMode=7
+ViewFormat=0
+UseNondependenceDashLine=0
+FontName=Meiryo UI
+FontSize=10
+PaperSize=A4Landscape
+HeaderLeft=
+HeaderCenter=
+HeaderRight=
+FooterLeft=
+FooterCenter=
+FooterRight=
+ShowPageoutRelation=1
+RDBMSType=6
+RDBMSTypeName=PostgreSQL
+CommonField="作成日時","created_at","*DATETIME","NOT NULL",,"CURRENT_TIMESTAMP","",$FFFFFFFF
+CommonField="更新日時","updated_at","*DATETIME","NOT NULL",,"CURRENT_TIMESTAMP","",$FFFFFFFF
+CommonField="削除フラグ","delete_flg","@BOOLEAN","NOT NULL",,"false","",$FFFFFFFF
+DefaultPkName=%0:s_PKC
+DefaultPkIndexName=%0:s_PKI
+DefaultIndexName=%0:s_IX%1:d
+DefaultFkName=%0:s_FK%1:d
+SqlSeparator=0
+UpperCaseKeyword=1
+ShowTag=1
+ShowCommonAttributes=0
+BugFixEntityWidth=1
+
+[Entity]
+PName=employees
+LName=従業員
+Comment=
+TableOption=
+Page=MAIN
+Left=100
+Top=100
+Field="ID","id","*AUTO_ID","NOT NULL",0,"","",$FFFFFFFF,""
+Field="社員番号","number","@VARCHAR","NOT NULL",,"","",$FFFFFFFF,"UNIQUE"
+Field="ログインID","login_id","@VARCHAR","NOT NULL",,"","",$FFFFFFFF,"UNIQUE"
+Field="性","last_name","@VARCHAR","NOT NULL",,"","",$FFFFFFFF,""
+Field="名","first_name","@VARCHAR","NOT NULL",,"","",$FFFFFFFF,""
+Field="性カナ","last_name_kana","@VARCHAR","NOT NULL",,"","",$FFFFFFFF,""
+Field="名カナ","first_name_kana","@VARCHAR","NOT NULL",,"","",$FFFFFFFF,""
+Field="パスワード","password","@VARCHAR(60)","NOT NULL",,"","",$FFFFFFFF,""
+Field="パスワードリセットフラグ","password_reset_flg","@BOOLEAN","NOT NULL",,"false","",$FFFFFFFF,""
+Field="役職","position","@VARCHAR",,,"","",$FFFFFFFF,""
+Field="部署ID","department_id","*ID",,,"","",$FFFFFFFF,"REFERENCES departments(id)"
+Field="権限ID","role_id","*ID","NOT NULL",,"","",$FFFFFFFF,"REFERENCES roles(id)"
+Field="生年月日","birthday","*DATE",,,"","",$FFFFFFFF,""
+Field="性別","sex","@INT",,,"","",$FFFFFFFF,""
+Field="血液型","blood","@INT",,,"","",$FFFFFFFF,""
+Field="出身地","birthplace","@VARCHAR",,,"","",$FFFFFFFF,""
+Field="自己紹介","biography","@VARCHAR",,,"","",$FFFFFFFF,""
+Field="退職フラグ","retirement_flg","@BOOLEAN","NOT NULL",,"false","",$FFFFFFFF,""
+Index=IDX_社員番号=1,number
+Index=IDX_社員コード=1,login_id
+EffectMode=None
+Color=$000000
+BkColor=$FFFFFF
+ModifiedDateTime=20220509155259
+Position="MAIN",100,100,975,800
+ZOrder=2
+
+[Entity]
+PName=departments
+LName=部署
+Comment=
+TableOption=
+Page=MAIN
+Left=1200
+Top=100
+Field="ID","id","*AUTO_ID","NOT NULL",0,"","",$FFFFFFFF,""
+Field="部署名","name","@VARCHAR","NOT NULL",,"","",$FFFFFFFF,""
+Field="部署名カナ","name_kana","@VARCHAR",,,"","",$FFFFFFFF,""
+Field="親部署ID","parent_department_id","*ID",,,"","",$FFFFFFFF,""
+Field="マネージャーID","manager_id","*ID",,,"","従業員.ID",$FFFFFFFF,""
+Field="サブマネージャーID","sub_manager_id","*ID",,,"","従業員.ID",$FFFFFFFF,""
+Index=IDX_部署名=1,name 
+Index=IDX_部署名カナ=1,name_kana 
+EffectMode=None
+Color=$000000
+BkColor=$FFFFFF
+ModifiedDateTime=20220509150847
+Position="MAIN",1200,100,975,275
+ZOrder=5
+
+[Line]
+Page=Main
+Left=344
+Top=590
+ZOrder=6
+Width=0
+Height=0
+
+[Relation]
+Entity1=employees
+Entity2=departments
+RelationType1=3
+RelationType2=2
+Fields1=department_id
+Fields2=id
+Cardinarity1=
+Cardinarity2=
+Position="MAIN",0,4075,4983,3381,R,R,""
+Dependence=0
+Caption=
+PName=
+ModifiedDateTime=20220506230042
+LineMode=0
+Bar1=408
+Bar2=498
+Bar3=338
+TermPos1=R
+TermPos2=R
+ZOrder=7
+
+[Entity]
+PName=roles
+LName=権限
+Comment=
+TableOption=
+Page=MAIN
+Left=1200
+Top=500
+Field="ID","id","*AUTO_ID","NOT NULL",0,"","",$FFFFFFFF,""
+Field="一般フラグ","general_flg","@BOOLEAN","NOT NULL",,"false","",$FFFFFFFF,""
+Field="マネージャーフラグ","manager_flg","@BOOLEAN","NOT NULL",,"false","",$FFFFFFFF,""
+Field="管理者フラグ","admin_flg","@BOOLEAN","NOT NULL",,"false","",$FFFFFFFF,""
+EffectMode=None
+Color=$000000
+BkColor=$FFFFFF
+ModifiedDateTime=20220509124638
+Position="MAIN",1200,500,800,200
+ZOrder=9
+
+[Relation]
+Entity1=employees
+Entity2=roles
+RelationType1=2
+RelationType2=2
+Fields1=role_id
+Fields2=id
+Cardinarity1=
+Cardinarity2=
+Position="MAIN",0,8371,6471,3484,L,L,""
+Dependence=0
+Caption=
+PName=
+ModifiedDateTime=20220509123600
+LineMode=0
+Bar1=837
+Bar2=647
+Bar3=348
+TermPos1=L
+TermPos2=L
+ZOrder=10
+
+[Entity]
+PName=schedules
+LName=予定
+Comment=
+TableOption=
+Page=MAIN
+Left=100
+Top=1000
+Field="ID","id","*AUTO_ID","NOT NULL",0,"","",$FFFFFFFF,""
+Field="タイトル","title","@VARCHAR","NOT NULL",,"","",$FFFFFFFF,""
+Field="詳細","details","@VARCHAR",,,"","",$FFFFFFFF,""
+Field="区分","type","@INT","NOT NULL",,"","",$FFFFFFFF,""
+Field="開始日時","start_at","@DATETIME","NOT NULL",,"","",$FFFFFFFF,""
+Field="終了日時","end_at","@DATETIME",,,"","",$FFFFFFFF,""
+Field="終日フラグ","all_day_flg","@BOOLEAN","NOT NULL",,"false","",$FFFFFFFF,""
+Field="繰り返し間隔","repeat_interval_type","@VARCHAR",,,"","day, week, month, yearのいずれか",$FFFFFFFF,""
+Field="繰り返し曜日","repeat_week_day","@VARCHAR",,,"","0(日)～6(土)までのカンマ区切り",$FFFFFFFF,""
+Field="繰り返し月日","repeat_month_day","@INT",,,"","",$FFFFFFFF,""
+Field="繰り返し回数","repeat_count","@INT",,,"","",$FFFFFFFF,""
+Field="繰り返し終了日","repeat_end_date","@DATETIME",,,"","",$FFFFFFFF,""
+Field="参加者IDs","employee_ids","@VARCHAR",,,"","従業員.IDのカンマ区切り",$FFFFFFFF,""
+Field="場所","place","@VARCHAR",,,"","会議室.IDもしくは{;文字列}",$FFFFFFFF,""
+Field="作成者ID","created_employee_id","*ID","NOT NULL",,"","従業員.ID",$FFFFFFFF,""
+Field="更新者ID","updated_employee_id","*ID","NOT NULL",,"","従業員.ID",$FFFFFFFF,""
+Index=IDX_タイトル=1,title
+EffectMode=None
+Color=$000000
+BkColor=$FFFFFF
+ModifiedDateTime=20220509124628
+Position="MAIN",100,1000,875,725
+ZOrder=11
