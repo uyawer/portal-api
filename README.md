@@ -1,6 +1,8 @@
-# Temportal
+# Temportal API
 
-学習用に作成する社内で使うようなPortal機能のAPI
+学習用に作成する社内で使うようなポータルサイト(API)
+
+Web: https://github.com/uyawer/temportal-web
 
 ## できること&やりたいこと
 
